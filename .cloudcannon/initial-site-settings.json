@@ -1,0 +1,6 @@
+{
+  "ssg": "astro",
+  "build_command": "npm run build",
+  "output_path": "dist",
+  "install_command": "npm install"
+}

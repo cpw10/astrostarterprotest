@@ -1,0 +1,358 @@
+paths:
+  static: public
+  uploads: public/images
+
+collections_config:
+  pages:
+    path: src/content/pages
+    url: "/[slug]/"
+    icon: wysiwyg
+    _enabled_editors:
+      - visual
+      - data
+    schemas:
+      default:
+        path: .cloudcannon/schemas/page.md
+        name: Page
+      page_builder:
+        path: .cloudcannon/schemas/page-builder.md
+        name: Page Builder
+        new_preview_url: /
+    add_options:
+      - name: Page
+        schema: default
+        icon: wysiwyg
+        editor: content
+      - name: Page Builder
+        schema: page_builder
+        icon: dashboard
+
+  blog:
+    path: src/content/blog
+    url: "/blog/[slug]/"
+    icon: event_available
+    _enabled_editors:
+      - visual
+      - content
+      - data
+    schemas:
+      default:
+        path: .cloudcannon/schemas/blog-post.md
+        name: Blog Post
+
+  data:
+    path: src/data
+    icon: settings
+    disable_add: true
+    disable_url: true
+
+collection_groups:
+  - heading: Content
+    collections:
+      - pages
+      - blog
+  - heading: Settings
+    collections:
+      - data
+
+_inputs:
+  title:
+    type: text
+  description:
+    type: textarea
+  subtitle:
+    type: textarea
+  tagline:
+    type: text
+  pubDate:
+    type: datetime
+    instance_value: NOW
+  author:
+    type: text
+  image:
+    type: image
+  imageAlt:
+    type: text
+  tags:
+    type: multiselect
+    options:
+      allow_create: true
+  category:
+    type: select
+    options:
+      allow_create: true
+  content_blocks:
+    type: array
+    options:
+      structures: _structures.content_blocks
+  actions:
+    type: array
+    options:
+      structures: _structures.actions
+  items:
+    type: array
+    options:
+      structures: _structures.items
+  features:
+    type: array
+    options:
+      structures: _structures.features
+  services:
+    type: array
+    options:
+      structures: _structures.services
+  icon:
+    type: select
+    comment: "Pick an icon from [Lucide](https://lucide.dev/icons/) or [Tabler](https://tabler.io/icons)"
+    options:
+      allow_create: true
+      values:
+        - lucide:github
+        - lucide:arrow-right
+        - lucide:scan-search
+        - lucide:zap
+        - lucide:palette
+        - lucide:users
+        - lucide:refresh-cw
+        - lucide:check
+        - lucide:mail
+        - lucide:phone
+        - lucide:map-pin
+        - lucide:headphones
+        - tabler:check
+  iconClass:
+    type: text
+    comment: "Tailwind classes for icon background/color (e.g. bg-blue-500/10 text-blue-400)"
+  variant:
+    type: select
+    options:
+      values:
+        - primary
+        - secondary
+        - link
+  isReversed:
+    type: switch
+  isAfterContent:
+    type: switch
+  isDark:
+    type: switch
+  columns:
+    type: number
+  href:
+    type: url
+  ariaLabel:
+    type: text
+  text:
+    type: text
+  _schema:
+    hidden: true
+  layout:
+    hidden: true
+  _type:
+    hidden: true
+
+_structures:
+  content_blocks:
+    values:
+      - label: Hero
+        icon: flag
+        picker_preview:
+          text:
+            - Hero
+          icon:
+            - flag
+        preview:
+          text:
+            - key: title
+            - Hero
+          icon:
+            - flag
+        value:
+          _type: hero
+          title:
+          tagline:
+          description:
+          actions: []
+        _inputs:
+          title:
+            type: html
+            options:
+              allow_custom_markup: true
+
+      - label: Features
+        icon: grid_view
+        picker_preview:
+          text:
+            - Features
+          icon:
+            - grid_view
+        preview:
+          text:
+            - key: title
+            - Features
+          icon:
+            - grid_view
+        value:
+          _type: features
+          title:
+          subtitle:
+          tagline:
+          features: []
+
+      - label: Content Section
+        icon: article
+        picker_preview:
+          text:
+            - Content Section
+          icon:
+            - article
+        preview:
+          text:
+            - key: title
+            - Content Section
+          icon:
+            - article
+        value:
+          _type: content2
+          title:
+          subtitle:
+          tagline:
+          description:
+          image:
+          imageAlt:
+          items: []
+          actions: []
+          isReversed: false
+          isAfterContent: false
+        _inputs:
+          image:
+            type: image
+
+      - label: Values Grid
+        icon: view_module
+        picker_preview:
+          text:
+            - Values Grid
+          icon:
+            - view_module
+        preview:
+          text:
+            - key: title
+            - Values Grid
+          icon:
+            - view_module
+        value:
+          _type: values
+          title:
+          subtitle:
+          tagline:
+          items: []
+          columns: 3
+
+      - label: Service List
+        icon: business_center
+        picker_preview:
+          text:
+            - Service List
+          icon:
+            - business_center
+        preview:
+          text:
+            - key: title
+            - Service List
+          icon:
+            - business_center
+        value:
+          _type: servicelist
+          title:
+          subtitle:
+          tagline:
+          services: []
+
+  actions:
+    values:
+      - label: Button
+        icon: ads_click
+        picker_preview:
+          text:
+            - Button
+          icon:
+            - ads_click
+        preview:
+          text:
+            - key: text
+            - Button
+          icon:
+            - ads_click
+        value:
+          text:
+          href:
+          variant: primary
+          icon:
+          ariaLabel:
+
+  items:
+    values:
+      - label: Item
+        icon: list
+        picker_preview:
+          text:
+            - Item
+          icon:
+            - list
+        preview:
+          text:
+            - key: title
+            - Item
+          icon:
+            - list
+        value:
+          title:
+          description:
+          icon:
+          iconClass:
+
+  features:
+    values:
+      - label: Feature
+        icon: star
+        picker_preview:
+          text:
+            - Feature
+          icon:
+            - star
+        preview:
+          text:
+            - key: title
+            - Feature
+          icon:
+            - star
+        value:
+          title:
+          description:
+          icon:
+          iconClass:
+
+  services:
+    values:
+      - label: Service
+        icon: work
+        picker_preview:
+          text:
+            - Service
+          icon:
+            - work
+        preview:
+          text:
+            - key: title
+            - Service
+          icon:
+            - work
+        value:
+          title:
+          description:
+          icon:
+
+data_config:
+  site:
+    path: src/data/site.json

@@ -119,11 +119,20 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
       {
         image && (
           <div class="relative m-auto max-w-4xl">
-            <Image
-              src={image}
-              alt={imageAlt}
-              class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
-            />
+            {typeof image === "string" ? (
+              <img
+                src={image}
+                alt={imageAlt}
+                class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                loading="lazy"
+              />
+            ) : (
+              <Image
+                src={image}
+                alt={imageAlt}
+                class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+              />
+            )}
           </div>
         )
       }

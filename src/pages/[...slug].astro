@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BlockRenderer from "@/components/BlockRenderer.astro";
+import { siteConfig } from "@/config/site";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((page) => ({
+    params: { slug: page.id === "index" ? undefined : page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const data = page.data;
+
+const metadata = {
+  title: data.title.includes(siteConfig.name) ? data.title : `${data.title} - ${siteConfig.name}`,
+  description: data.description || siteConfig.description,
+};
+---
+
+<BaseLayout metadata={metadata}>
+  {"content_blocks" in data && data.content_blocks && data.content_blocks.length > 0 ? (
+    <div
+      data-editable="array"
+      data-prop="content_blocks"
+      data-component-key="_type"
+    >
+      {data.content_blocks.map((block) => (
+        <BlockRenderer block={block} />
+      ))}
+    </div>
+  ) : (
+    <article class="prose prose-lg max-w-4xl mx-auto py-12 px-4">
+      <Content />
+    </article>
+  )}
+</BaseLayout>
