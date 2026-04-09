@@ -7,9 +7,9 @@ description: >-
 content_blocks:
   - _type: hero
     title: >-
-      Starter Template for <br class="hidden md:block" /> <span
-      class="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400
-      bg-clip-text text-transparent">Web Developers</span>
+      Starter Template for  <span class="bg-linear-to-r from-blue-400
+      via-purple-400 to-pink-400 bg-clip-text text-transparent">Web
+      Developers</span>
     tagline: Astro v5 + Tailwind v4
     description: >-
       Starter template optimized for SEO and performance. A solid foundation to
@@ -89,4 +89,7 @@ content_blocks:
         description: Integrated configuration with the latest version of Tailwind CSS.
         icon: lucide:palette
         iconClass: bg-pink-500/10 text-pink-400
+_enabled_editors:
+  - visual
+  - data
 ---
