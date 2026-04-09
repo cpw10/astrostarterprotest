@@ -7,6 +7,12 @@ collections_config:
     path: src/content/pages
     url: "/[slug]/"
     icon: wysiwyg
+    preview:
+      text:
+        - key: title
+      subtext:
+        - key: description
+      icon: wysiwyg
     _enabled_editors:
       - visual
       - data
@@ -356,3 +362,33 @@ _structures:
 data_config:
   site:
     path: src/data/site.json
+
+_editables:
+  content:
+    blockquote: true
+    bold: true
+    bulletedlist: true
+    code: true
+    embed: true
+    format: p h1 h2 h3 h4 h5 h6
+    horizontalrule: true
+    image: true
+    indent: true
+    italic: true
+    link: true
+    numberedlist: true
+    outdent: true
+    redo: true
+    removeformat: true
+    snippet: true
+    strike: true
+    subscript: true
+    superscript: true
+    table: true
+    underline: true
+    undo: true
+
+markdown:
+  engine: commonmark
+  options:
+    table: true

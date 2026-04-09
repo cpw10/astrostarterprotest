@@ -34,25 +34,54 @@ const gridCols = {
   bg={bg}
   classes={otherClasses}
 >
-  <Headline
-    title={title}
-    subtitle={subtitle}
-    tagline={tagline}
-    classes={{
-      container: "max-w-3xl mx-auto text-center",
-    }}
-  />
+  <div class="mb-4 max-w-3xl mx-auto text-center">
+    {tagline && (
+      <div class="inline-flex items-center gap-2 px-3 py-1 text-primary text-lg font-semibold">
+        <span data-editable="text" data-prop="tagline">{tagline}</span>
+      </div>
+    )}
+    {title && (
+      <h2
+        class="font-bold tracking-tight text-foreground mb-4 text-3xl md:text-4xl"
+        data-editable="text"
+        data-prop="title"
+      >
+        {title}
+      </h2>
+    )}
+    {subtitle && (
+      <p
+        class="text-muted-foreground text-xl"
+        data-editable="text"
+        data-prop="subtitle"
+      >
+        {subtitle}
+      </p>
+    )}
+  </div>
   <div class={`grid ${gridCols[columns]} gap-8 text-left`}>
     {
-      items.map((item) => (
+      items.map((item, index) => (
         <Card>
           {item.icon && (
             <div class="mb-4 text-primary text-4xl">
               <Icon name={item.icon} class="w-12 h-12" />
             </div>
           )}
-          <h3 class="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-          <p class="text-sm text-muted-foreground">{item.description}</p>
+          <h3
+            class="text-xl font-bold text-foreground mb-2"
+            data-editable="text"
+            data-prop={`items.${index}.title`}
+          >
+            {item.title}
+          </h3>
+          <p
+            class="text-sm text-muted-foreground"
+            data-editable="text"
+            data-prop={`items.${index}.description`}
+          >
+            {item.description}
+          </p>
         </Card>
       ))
     }

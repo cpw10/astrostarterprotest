@@ -26,17 +26,34 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
   bg={bg}
   classes={otherClasses}
 >
-  <Headline
-    title={title}
-    subtitle={subtitle}
-    tagline={tagline}
-    classes={{
-      container: "max-w-3xl mx-auto text-center",
-    }}
-  />
+  <div class="mb-4 max-w-3xl mx-auto text-center">
+    {tagline && (
+      <div class="inline-flex items-center gap-2 px-3 py-1 text-primary text-lg font-semibold">
+        <span data-editable="text" data-prop="tagline">{tagline}</span>
+      </div>
+    )}
+    {title && (
+      <h2
+        class="font-bold tracking-tight text-foreground mb-4 text-3xl md:text-4xl"
+        data-editable="text"
+        data-prop="title"
+      >
+        {title}
+      </h2>
+    )}
+    {subtitle && (
+      <p
+        class="text-muted-foreground text-xl"
+        data-editable="text"
+        data-prop="subtitle"
+      >
+        {subtitle}
+      </p>
+    )}
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     {
-      features.map((feature) => (
+      features.map((feature, index) => (
         <Card>
           {feature.icon && (
             <div
@@ -45,10 +62,20 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
               <Icon name={feature.icon} class="w-6 h-6" />
             </div>
           )}
-          <h3 class="text-xl font-bold text-foreground mb-3">
+          <h3
+            class="text-xl font-bold text-foreground mb-3"
+            data-editable="text"
+            data-prop={`features.${index}.title`}
+          >
             {feature.title}
           </h3>
-          <p class="text-muted-foreground text-sm">{feature.description}</p>
+          <p
+            class="text-muted-foreground text-sm"
+            data-editable="text"
+            data-prop={`features.${index}.description`}
+          >
+            {feature.description}
+          </p>
         </Card>
       ))
     }
