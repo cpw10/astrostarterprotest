@@ -84,6 +84,7 @@ const pageBuilderSchema = z.object({
   _schema: z.literal("page_builder").optional(),
   title: z.string(),
   description: z.string().nullish(),
+  image: z.string().nullish(),
   content_blocks: z.array(contentBlock).default([]),
 });
 

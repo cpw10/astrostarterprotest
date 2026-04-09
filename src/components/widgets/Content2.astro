@@ -140,7 +140,7 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
     <div class="md:basis-1/2 self-center mt-10 md:mt-0" aria-hidden="true">
       {
         image && (
-          <div class="relative m-auto max-w-4xl" data-editable="image" data-prop="image">
+          <editable-image data-prop-src="image" class="relative m-auto max-w-4xl block">
             {typeof image === "string" ? (
               <img
                 src={image}
@@ -155,7 +155,7 @@ const { container: containerClassProp = "", ...otherClasses } = classes;
                 class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
               />
             )}
-          </div>
+          </editable-image>
         )
       }
     </div>

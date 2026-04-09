@@ -12,6 +12,8 @@ collections_config:
         - key: title
       subtext:
         - key: description
+      image:
+        - key: image
       icon: wysiwyg
     _enabled_editors:
       - visual
